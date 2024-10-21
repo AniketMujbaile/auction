@@ -7,7 +7,7 @@ const cloudinary = require("cloudinary");
 
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const cors=require("cors");
+const cors= require("cors");
 const stripe=require("stripe")("sk_test_51KVzMySFWvR6XE1YibTsOQVGXXVtCjUY2IvNlXEbzlCTOb0hkngXsvAI2kcExNchbesK4jiTv4cpPCOjMHN7jYgF00TjjjozYy")
 const uuid=require("uuid");
 
@@ -33,8 +33,11 @@ app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ limit: "50mb", extended:true }));
 app.use(fileUpload());
-app.use(cors());
-
+//app.use(cors());
+app.use(cors({
+    origin:'https://auction-coral-six.vercel.app/',
+    credentials: true,
+}));
 
 // HANDLING UNCAUGHT EXCEPTION -> CONSOLE.LOG(UNDEFINE VARIABLE)
 process.on("uncaughtException" , err => {
